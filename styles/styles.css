@@ -114,3 +114,44 @@ border-radius: 17px;
  color: #ffffff; 
  font-weight: 900;
 }
+
+@media screen and (max-width: 720px) {
+    body {
+        padding: 1%;
+        justify-content: space-evenly;
+    }
+    .player-name {
+        display: none;
+    }
+    .winner-title {
+        width: 90%;
+    }
+    .scoreboard-box {
+        width: 100%;
+    }
+    .config-box {
+        gap: 10px;
+        
+    }
+    .battle-field {
+        flex-direction: column;
+    }
+    .button-move-wrapper {
+        flex-direction: row;
+        height: unset;
+    }
+    .button-move {
+        font-size: 25px;
+        width: 115px;
+    }
+    .move-box-separator {
+        font-size: 20px;
+    }
+    .board {
+        padding: 10px;
+    }
+    .move-box {
+        width: 40%;
+    }
+    
+}
