@@ -5,6 +5,7 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
+    
 }
 .header {
     width: 100%;
@@ -108,11 +109,21 @@ border-radius: 17px;
     width: 36%;
     background-color: #dbf1ff;
     border-radius: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.move-box img {
+    width: 80%;
+    height: auto;
 }
 .move-box-separator {
  font-size: 104px;  
  color: #ffffff; 
  font-weight: 900;
+}
+#move-box-2 img {
+transform: scaleX(-1);
 }
 
 @media screen and (max-width: 720px) {
