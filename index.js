@@ -6,35 +6,108 @@ const $buttonStonePlayer2 = document.querySelector('.button-move-stone-2')
 const $buttonPaperPlayer2 = document.querySelector('.button-move-paper-2')
 const $buttonScissorsPlayer2 = document.querySelector('.button-move-scissors-2')
 
+
+
 const $moveBox1 = document.querySelector('#move-box-1')
 const $moveBox2 = document.querySelector('#move-box-2')
 
-function handleStone1Move() {
-    $moveBox1.innerHTML = '<img src="images/stone.png" alt= "imagem de mão fechada" title="imagem de mão fechada">'
+const $scorePlayer1 = document.querySelector('#score-1')
+const $scorePlayer2 = document.querySelector('#score-2')
+
+let = movePlayer1 = ''
+let = movePlayer2 = ''
+let = winner = 
+let = player1Score = 0
+let = player2Score = 0
+
+function setWinner() {
+if(movePlayer1 == '' || movePlayer2 == ''){
+    return
+}
+
+    if (movePlayer1 == 'stone' && movePlayer2 == 'paper') {
+        winner = 2
+
+    } else if (movePlayer1 == 'stone' && movePlayer2 == 'scissors') {
+        winner = 1
+    } else if (movePlayer1 == 'paper' && movePlayer2 == 'stone') {
+        winner = 1
+
+    } else if (movePlayer1 == 'paper' && movePlayer2 == 'scissors') {
+        winner = 2
+    } else if (movePlayer1 == 'scissors' && movePlayer2 == 'stone') {
+        winner = 2
+
+    } else if (movePlayer1 == 'scissors' && movePlayer2 == 'paper') {
+        winner = 1
+    } else if (movePlayer1 == 'stone' && movePlayer2 == 'paper') {
+        winner = 2
+    } else if (movePlayer1 == movePlayer2) {
+        winner = 3
+    }   
 
 }
+
+function addWinnerScore() {
+if (winner == 1) {
+    player1Score = player1Score + 1
+} else if (winner == 2) {
+    player2Score = player2Score + 1
+}
+
+}
+function printWinnerScore() {
+$scorePlayer1.innerHTML = player1Score
+$scorePlayer2.innerHTML = player2Score
+}
+
+function handleStone1Move() {
+    $moveBox1.innerHTML = '<img src="images/stone.png" alt= "imagem de mão fechada" title="imagem de mão fechada">'
+    movePlayer1 = 'stone'
+    setWinner()
+    addWinnerScore()
+    printWinnerScore()
+
+}
+
 function handlePaper1Move() {
     $moveBox1.innerHTML = '<img src="images/paper.png" alt= "imagem de mão aberta" title="imagem de mão aberta">'
-
+    movePlayer1 = 'paper'
+    setWinner()
+    addWinnerScore()
+    printWinnerScore()
 }
 function handleScissors1Move() {
     $moveBox1.innerHTML = '<img src="images/scissors.png" alt= "imagem de mão mostrando o indicador e o dedo médio" title="imagem de mão mostando o indicador e o dedo médio">'
-
+    movePlayer1 = ' scissors'
+    setWinner()
+    addWinnerScore()
+    printWinnerScore()
 }
 
 
 
 function handleStone2Move() {
-    $moveBox2.innerHTML = '<img src="images/stone.png" alt ="imagem de mão fechada" title="imagem de mão fechada>'
+    $moveBox2.innerHTML = '<img src="images/stone.png" alt= "imagem de mão fechada" title="imagem de mão fechada">'
+    movePlayer2 = 'stone'
+    setWinner()
+    addWinnerScore()
+    printWinnerScore()
 
 }
 function handlePaper2Move() {
-    $moveBox2.innerHTML = '<img src="images/paper.png" alt= "imagem de mão aberta" title="imagem de mão aberta>'
-
+    $moveBox2.innerHTML = '<img src="images/paper.png" alt= "imagem de mão aberta" title="imagem de mão aberta">'
+    movePlayer2 = 'paper'
+    setWinner()
+    addWinnerScore()
+    printWinnerScore()
 }
 function handleScissors2Move() {
     $moveBox2.innerHTML = '<img src="images/scissors.png" alt= "imagem de mão mostrando o indicador e o dedo médio" title= "imagem de mão mostrando o indicador e o dedo médio">'
-
+    movePlayer2 = 'scissors'
+    setWinner()
+    addWinnerScore()
+    printWinnerScore()
 }
 
 
