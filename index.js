@@ -14,6 +14,8 @@ const $moveBox2 = document.querySelector('#move-box-2')
 const $scorePlayer1 = document.querySelector('#score-1')
 const $scorePlayer2 = document.querySelector('#score-2')
 
+const $winnerTitle = document.querySelector('.winner-title')
+
 let = movePlayer1 = ''
 let = movePlayer2 = ''
 let = winner = 
@@ -57,8 +59,33 @@ if (winner == 1) {
 
 }
 function printWinnerScore() {
-$scorePlayer1.innerHTML = player1Score
-$scorePlayer2.innerHTML = player2Score
+$scorePlayer1.innerHTML = player1Score.toString().padStart(2,'0')
+$scorePlayer2.innerHTML = player2Score.toString().padStart(2,'0')
+}
+
+function printWinnerName() {
+    if (winner == 1){
+        $winnerTitle.innerHTML = 'Jogador 1 venceu'
+
+    }
+    if (winner == 2){
+        $winnerTitle.innerHTML = 'Jogador 2 venceu'
+
+    }
+    if (winner == 3){
+        $winnerTitle.innerHTML = 'Empatou'
+
+    }
+}
+
+function resetBattlefield() {
+    $moveBox1.innerHTML = ''
+    $moveBox2.innerHTML = ''
+}
+
+function resetMoveVariables() {
+    movePlayer1 = ''
+    movePlayer2 = ''
 }
 
 function handleStone1Move() {
@@ -67,6 +94,14 @@ function handleStone1Move() {
     setWinner()
     addWinnerScore()
     printWinnerScore()
+    printWinnerName()
+    if (winner != 0) {
+       setTimeout(resetBattlefield, 1000)
+       resetMoveVariables()  
+       winner = 0  
+    }
+    
+  
 
 }
 
@@ -76,13 +111,27 @@ function handlePaper1Move() {
     setWinner()
     addWinnerScore()
     printWinnerScore()
+    printWinnerName()
+    if (winner != 0) {
+        setTimeout(resetBattlefield, 1000)
+        resetMoveVariables()  
+        winner = 0    
+    }
+    
 }
 function handleScissors1Move() {
     $moveBox1.innerHTML = '<img src="images/scissors.png" alt= "imagem de mão mostrando o indicador e o dedo médio" title="imagem de mão mostando o indicador e o dedo médio">'
-    movePlayer1 = ' scissors'
+    movePlayer1 = 'scissors'
     setWinner()
     addWinnerScore()
     printWinnerScore()
+    printWinnerName()
+    if (winner != 0) {
+        setTimeout(resetBattlefield, 1000)
+        resetMoveVariables() 
+        winner = 0     
+    }
+    
 }
 
 
@@ -93,6 +142,13 @@ function handleStone2Move() {
     setWinner()
     addWinnerScore()
     printWinnerScore()
+    printWinnerName()
+    if (winner != 0) {
+        setTimeout(resetBattlefield, 1000)
+        resetMoveVariables()    
+        winner = 0  
+    }
+    
 
 }
 function handlePaper2Move() {
@@ -101,6 +157,14 @@ function handlePaper2Move() {
     setWinner()
     addWinnerScore()
     printWinnerScore()
+    printWinnerName()
+    if (winner != 0) {
+        setTimeout(resetBattlefield, 1000)
+        resetMoveVariables()
+        winner = 0  
+        
+    }
+    
 }
 function handleScissors2Move() {
     $moveBox2.innerHTML = '<img src="images/scissors.png" alt= "imagem de mão mostrando o indicador e o dedo médio" title= "imagem de mão mostrando o indicador e o dedo médio">'
@@ -108,6 +172,13 @@ function handleScissors2Move() {
     setWinner()
     addWinnerScore()
     printWinnerScore()
+    printWinnerName()
+    if (winner != 0) {
+        setTimeout(resetBattlefield, 1000)
+        resetMoveVariables()
+        winner = 0  
+    }
+    
 }
 
 
