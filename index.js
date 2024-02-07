@@ -16,11 +16,15 @@ const $scorePlayer2 = document.querySelector('#score-2')
 
 const $winnerTitle = document.querySelector('.winner-title')
 
+const $buttonReset = document.querySelector('.button-reset')
+const $buttonStart = document.querySelector('.button-start')
+
 let = movePlayer1 = ''
 let = movePlayer2 = ''
 let = winner = 
 let = player1Score = 0
 let = player2Score = 0
+let = gameStart = false
 
 function setWinner() {
 if(movePlayer1 == '' || movePlayer2 == ''){
@@ -58,6 +62,10 @@ if (winner == 1) {
 }
 
 }
+function resetScore() {
+    player1Score = 0
+    player2Score = 0
+}
 function printWinnerScore() {
 $scorePlayer1.innerHTML = player1Score.toString().padStart(2,'0')
 $scorePlayer2.innerHTML = player2Score.toString().padStart(2,'0')
@@ -76,6 +84,9 @@ function printWinnerName() {
         $winnerTitle.innerHTML = 'Empatou'
 
     }
+    if (winner == 0) {
+        $winnerTitle.innerHTML = 'Indefinido'
+    }
 }
 
 function resetBattlefield() {
@@ -88,7 +99,18 @@ function resetMoveVariables() {
     movePlayer2 = ''
 }
 
+function resetAll() {
+    resetMoveVariables()
+    resetBattlefield()
+    resetScore()
+    printWinnerScore()
+    printWinnerName()
+    $buttonStart.textContent = 'Parar'
+    $buttonStart.classList.add('started')
+}
+
 function handleStone1Move() {
+    if (gameStart == false) return
     $moveBox1.innerHTML = '<img src="images/stone.png" alt= "imagem de mão fechada" title="imagem de mão fechada">'
     movePlayer1 = 'stone'
     setWinner()
@@ -106,6 +128,7 @@ function handleStone1Move() {
 }
 
 function handlePaper1Move() {
+    if (gameStart == false) return
     $moveBox1.innerHTML = '<img src="images/paper.png" alt= "imagem de mão aberta" title="imagem de mão aberta">'
     movePlayer1 = 'paper'
     setWinner()
@@ -120,6 +143,7 @@ function handlePaper1Move() {
     
 }
 function handleScissors1Move() {
+    if (gameStart == false) return
     $moveBox1.innerHTML = '<img src="images/scissors.png" alt= "imagem de mão mostrando o indicador e o dedo médio" title="imagem de mão mostando o indicador e o dedo médio">'
     movePlayer1 = 'scissors'
     setWinner()
@@ -137,6 +161,7 @@ function handleScissors1Move() {
 
 
 function handleStone2Move() {
+    if (gameStart == false) return
     $moveBox2.innerHTML = '<img src="images/stone.png" alt= "imagem de mão fechada" title="imagem de mão fechada">'
     movePlayer2 = 'stone'
     setWinner()
@@ -152,6 +177,7 @@ function handleStone2Move() {
 
 }
 function handlePaper2Move() {
+    if (gameStart == false) return
     $moveBox2.innerHTML = '<img src="images/paper.png" alt= "imagem de mão aberta" title="imagem de mão aberta">'
     movePlayer2 = 'paper'
     setWinner()
@@ -167,6 +193,7 @@ function handlePaper2Move() {
     
 }
 function handleScissors2Move() {
+    if (gameStart == false) return
     $moveBox2.innerHTML = '<img src="images/scissors.png" alt= "imagem de mão mostrando o indicador e o dedo médio" title= "imagem de mão mostrando o indicador e o dedo médio">'
     movePlayer2 = 'scissors'
     setWinner()
@@ -181,6 +208,22 @@ function handleScissors2Move() {
     
 }
 
+function handleToggGame() {
+
+if(gameStart == true){
+    gameStart = false
+    $buttonStart.textContent = 'Iniciar'
+    $buttonStart.classList.remove('started')
+   
+} else {
+    gameStart = true
+    $buttonStart.textContent = 'Parar'
+    $buttonStart.classList.add('started')
+}
+
+
+}
+
 
 $buttonStonePlayer1.addEventListener('click', handleStone1Move)
 $buttonPaperPlayer1.addEventListener('click', handlePaper1Move)
@@ -189,4 +232,7 @@ $buttonScissorsPlayer1.addEventListener('click', handleScissors1Move)
 $buttonStonePlayer2.addEventListener('click', handleStone2Move)
 $buttonPaperPlayer2.addEventListener('click', handlePaper2Move)
 $buttonScissorsPlayer2.addEventListener('click', handleScissors2Move)
+
+$buttonReset.addEventListener('click', resetAll)
+$buttonStart.addEventListener('click',  handleToggGame )
 
